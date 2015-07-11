@@ -1,0 +1,74 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<style>
+#additem{
+  vertical-align:top;
+}
+</style>
+<script>
+
+//ADD ITEM
+$(document).ready(function() {
+  $("#additem").click(function(){
+    var newitem = $("#newitem").val();
+    var count = 0;
+    var msg = "msg=" + JSON.stringify(newitem);
+    $.post('{{=add_url}}', msg, function(jdata) {
+      var data = $.parseJSON(jdata);
+      $("#mylist").append("<div class='person'><span class='name'>" + newitem + "</span> <span class='count'>"+ count + "</span> <button class='increment'>+</button><button class='decrement'>-</button></div>");
+      $("#newitem").val("");
+    });
+  });
+
+  //INCREMENT
+  $('body').unbind('click').on('click','button.increment', function (e) {
+
+    var name = $($(e.target).parent().children('span')[0]).html();
+    if($($(e.target).parent().children('span')[0]).html() == name){
+      $($(e.target).parent().children('span')[1]).html(parseInt($($(e.target).parent().children('span')[1]).html(), 10) + 1);
+    }
+    var count = $($(e.target).parent().children('span')[1]).html();
+    var msg = "msg=" + JSON.stringify(name);
+    $.post('{{=increment_count}}', msg, function(jdata) {
+      var data = $.parseJSON(jdata);
+      
+    });
+  });
+
+  //DECREMENT but NOT BEYOND 0.
+  $('body').on('click', 'button.decrement', function (e) {
+    var name = $($(e.target).parent().children('span')[0]).html();
+   
+    var name_json = JSON.stringify(name);
+    var count = $($(e.target).parent().children('span')[1]).html();
+    if($($(e.target).parent().children('span')[1]).html() != '0'){
+      $($(e.target).parent().children('span')[1]).html(parseInt($($(e.target).parent().children('span')[1]).html(), 10) - 1);
+    }
+    var count = $($(e.target).parent().children('span')[1]).html();
+    var msg = "msg=" + JSON.stringify(name);
+    $.post('{{=decrement_count}}', msg, function(jdata) {
+      var data = $.parseJSON(jdata);
+      
+    });
+    
+  });
+
+});
+
+</script>
+{{end}}
+
+{{=A('Part2 - Rank funny sounding people', _href=URL("part2"))}}
+
+<h1>Part 1 - Rank the people!</h1>
+<h3>Add people and adjust their counts using the +/- buttons.</h3>
+
+<div id="mylist">
+</div>
+<input id="newitem" type="text" class="text"/>
+<button id="additem" class="btn">+</button>
+<h1> </h1>
+{{=add_btn}}
+
+

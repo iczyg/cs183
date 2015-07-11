@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+<html>
+    <body style="background: -webkit-radial-gradient(circle, #F0E68C, #C0C0C0);">
+        <h1>Customer: {{=auth.user.first_name + " " + auth.user.last_name}}</h1>
+        <h4> Welcome to your Account Interface </h4><br>
+
+        <h3> View Existing Holds: </h3>
+        <div><button> {{=A ('Review an Auction', _href=URL('default','customer_view'))}} </button></div><br>
+
+        <h3> Create and Hold a New Request for Solar Save: </h3>
+        <div><button> {{=A ('Start an Auction', _href=URL('default','add'))}} </button></div>
+
+    </body>
+</html>

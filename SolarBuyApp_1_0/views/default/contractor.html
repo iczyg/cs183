@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<html>
+    <body style="background: -webkit-radial-gradient(circle, #F0E68C, #C0C0C0);">
+        <h2> Contractor: {{=auth.user.first_name + " " + auth.user.last_name}} </h2>
+        <h3> Welcome to your Account Interface </h3><br>
+
+        <h4> List of Requests: </h4>
+        <div><button> {{=A ('View Requests', _href=URL('default','contractor_view'))}} </button></div><br>
+
+        <h4> Add </h4>
+        <div><button> {{=A ('Find Roofs', _href=URL('default','contractor_add'))}} </button></div>
+    </body>
+</html>

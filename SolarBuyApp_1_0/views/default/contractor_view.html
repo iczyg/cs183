@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+<html>
+    <body style="background: -webkit-radial-gradient(circle, #F0E68C, #C0C0C0);">
+        <button> {{=A ('Back to Home', _href=URL('default', 'contractor'))}} </button>
+        <h1> Current Requests </h1>
+        <h3> List of Auctions </h3>
+        {{=grid}}
+    </body>
+</html>

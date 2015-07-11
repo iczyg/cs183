@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+<html>
+    <body style="background: -webkit-radial-gradient(circle, #F0E68C, #C0C0C0);">
+<!-- ********************************************************** -->
+        <h3> Do You Want a Smaller Electric Bill? </h3>
+        <p> We can help you with that. </p>
+
+        <h3> Do You Want To Help Save Electric Usage? </h3>
+        <p> We can help you with that. <p>
+
+        <h3> We Solar For More Save </h3>
+        <p> Login immediately to start saving. </p>
+        <br>
+<!-- ********************************************************** -->
+        <!-- LINK TO USER'S LOGIN -->
+        <!-- DELETE the last two after login is correctly setup -->
+        <div><button> {{=A ('Login', _href=URL('default','login'))}} </button></div><br>
+        <div><button> {{=A ('Customer', _href=URL('default','customer'))}}</button></div><br>
+        <div><button> {{=A ('Contractor', _href=URL('default','contractor'))}}</button></div>
+<!-- ********************************************************** -->
+    </body>
+</html>

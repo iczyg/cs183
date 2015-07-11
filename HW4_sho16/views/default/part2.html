@@ -1,0 +1,65 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<title>jQuery UI Sortable - Default functionality</title>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  
+<style>
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+
+
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#sortable li span { position: absolute; margin-left: -1.3em; }
+</style>
+<script>
+
+
+$(function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  });
+  
+  
+$(document).ready(function(){
+  $("#sortable").sortable({
+    update: function( event, ui ) {
+      var ranked= new Array("Wun","Tooh","Thuhree","Fior","Vive Jive",
+                    "Sicksy","Zeben","Aight","Nein","Tent");
+      var num0 = $("#sortable li:eq(0)").text();
+      var num1 = $("#sortable li:eq(1)").text();
+      var num2 = $("#sortable li:eq(2)").text();
+      var num3 = $("#sortable li:eq(3)").text();
+      var num4 = $("#sortable li:eq(4)").text();
+      var num5 = $("#sortable li:eq(5)").text();
+      var num6 = $("#sortable li:eq(6)").text();
+      var num7 = $("#sortable li:eq(7)").text();
+      var num8 = $("#sortable li:eq(8)").text();
+      var num9 = $("#sortable li:eq(9)").text();
+      if( (num0 == ranked[0]) & (num1 == ranked[1]) & (num2 == ranked[2]) & (num3 == ranked[3]) & (num4 == ranked[4]) 
+            & (num5 == ranked[5]) & (num6 == ranked[6]) & (num7 == ranked[7]) & (num8 == ranked[8]) 
+            & (num9 == ranked[9])  ){
+        $("#sortable li").css( "color", "gold" );
+        document.getElementById("title").innerHTML="YOU WON!";
+      }
+    }
+  });
+});
+
+</script>
+{{end}}
+
+
+{{=A('Back to Part 1', _href=URL("index"))}}
+
+<h3 id="title">Order these people by Intuition </h3>
+<h4 id="title">What do their names sound like? </h4>
+
+{{k = 0}}
+<ul id="sortable" >
+  {{while k < 10:}}<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{=random_rank[k]}}{{k = k + 1}}</li>{{pass}}
+
+
+
